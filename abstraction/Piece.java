@@ -1,5 +1,7 @@
 package abstraction;
 
+import java.util.List;
+
 public abstract class Piece {
     protected Character name;
     protected int val;
@@ -22,4 +24,6 @@ public abstract class Piece {
     public int getCol(){
         return col;
     }
+
+    public abstract List<Integer> totalMove(Piece[] b, int ind);
 }

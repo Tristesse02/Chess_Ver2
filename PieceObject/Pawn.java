@@ -38,9 +38,11 @@ public class Pawn extends Piece{
 
     }
     
+    @Override
     public List<Integer> totalMove(Piece[] b, int ind){
         possibleMoveWC(b, ind);
         possibleCapture(b, ind);
         return move;
     }
+
 }
