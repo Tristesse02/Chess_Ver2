@@ -85,7 +85,7 @@ public class Board {
         //STEP1: replacing the FEN by any position that you want, the program
         //are able to reconstruct from any position
         //STEP2: define -> NameOfTheObj aName = (NameOfTheObj) b.getBoard()[indexPositionOfThePiece]
-        //STEP3: System.out.println(p.totalMove(b.getBoard()))
+        //STEP3: System.out.println(p.totalMove(b.getBoard(), index))
     }
 
 }
