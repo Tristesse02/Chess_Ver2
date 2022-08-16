@@ -22,29 +22,92 @@ public class Bishop extends Piece{
      * @return void
      */
     public void moveUpLeft(Piece[] b, int ind){
+        boolean isEdge = false;
+        for(int i = ind + 7; i < 64; i += 7){
+            if(!isEdge){
+                if(i % 8 == 0 || (i >= 56 && i <= 63)){
+                    isEdge = true;
+                }
+                if(b[i] == null){
+                    move.add(i);
+                }
+                else if(b[i].getCol() != b[ind].getCol()){
+                    move.add(i);
+                    break;
+                }
+            }
+        }
         return;
     }
-
     /*
      * TODO2: like todo1 but in other direction
      */
     public void moveUpRight(Piece[] b, int ind){
+        boolean isEdge = false;
+        for(int i = ind + 9; i < 64; i += 9){
+            if(!isEdge){
+                if(i % 8 == 7 || (i >= 56 && i <= 63)){
+                    isEdge = true;
+                }
+                if(b[i] == null){
+                    move.add(i);
+                }
+                else if(b[i].getCol() != b[ind].getCol()){
+                    move.add(i);
+                    break;
+                }
+            }
+        }
         return;
     }
 
     //TODO:
     public void moveDownLeft(Piece[] b, int ind){
+        boolean isEdge = false;
+        for(int i = ind - 9; i >= 0; i -= 9){
+            if(!isEdge){
+                if(i % 8 == 0 || (i >= 0 && i <= 7)){
+                    isEdge = true;
+                }
+                if(b[i] == null){
+                    move.add(i);
+                }
+                else if(b[i].getCol() != b[ind].getCol()){
+                    move.add(i);
+                    break;
+                }
+            }
+        }
         return;
     }
 
     //TODO:
     public void moveDownRight(Piece[] b, int ind){
+        boolean isEdge = false;
+        for(int i = ind - 7; i >= 0; i -= 7){
+            if(!isEdge){
+                if(i % 8 == 7 || (i >= 0 && i <= 7)){
+                    isEdge = true;
+                }
+                if(b[i] == null){
+                    move.add(i);
+                }
+                else if(b[i].getCol() != b[ind].getCol()){
+                    move.add(i);
+                    break;
+                }
+            }
+        }
         return;
     }   
 
     @Override
     public List<Integer> totalMove(Piece[] b, int ind){
         //TODO
+        moveUpLeft(b, ind);
+        moveUpRight(b, ind);
+        moveDownLeft(b, ind);
+        moveDownRight(b, ind);
         return move;
     }
 }

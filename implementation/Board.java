@@ -1,4 +1,5 @@
 package implementation;
+import java.util.Arrays;
 import java.util.Scanner;
 import PieceObject.Pawn;
 import abstraction.Piece;
@@ -47,7 +48,7 @@ public class Board {
         int col = Character.isLowerCase(c) ? 8 : 16;
         if(c == 'p' || c == 'P') return new Pawn(c, 1, col);
         else if(c == 'R' || c == 'r') return new Rock(c, 5, col);
-        // else if(c == 'B' || c == 'b') return new Bishop(c, 3, col);
+        else if(c == 'B' || c == 'b') return new Bishop(c, 3, col);
         // else if(c == 'N' || c == 'n') return new Knight(c, 3, col);
         // else if(c == 'Q' || c == 'q') return new Queen(c, 9, col);
         // else if(c == 'k' || c == 'K') return new King(c, 100, col);
@@ -75,11 +76,11 @@ public class Board {
 
     public static void main(String[] args){
         Board b = new Board();
-        b.readFEN("8/8/3r4/2p1p1R1/8/3P4/4P3/8 w - - 0 1");
-        Pawn p = (Pawn) b.getBoard()[12];
-        System.out.println(b.getBoard()[38].totalMove(b.getBoard(), 38));
+        b.readFEN("8/8/8/P7/7r/8/8/4B3 w - - 0 1");
+        //Pawn p = (Pawn) b.getBoard()[4];
+        System.out.println(b.getBoard()[4].totalMove(b.getBoard(), 4));
         System.out.println(b.getBoard().getClass().getSimpleName());
-        System.out.println(p.totalMove(b.getBoard(), 12));
+        // System.out.println(p.totalMove(b.getBoard(), 12));
 
         /* HOW TO CHECK UR CODE!!! */
         //STEP1: replacing the FEN by any position that you want, the program
