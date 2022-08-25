@@ -76,9 +76,9 @@ public class Board {
 
     public static void main(String[] args){
         Board b = new Board();
-        b.readFEN("8/8/8/P7/7r/8/8/4B3 w - - 0 1");
-        //Pawn p = (Pawn) b.getBoard()[4];
-        System.out.println(b.getBoard()[4].totalMove(b.getBoard(), 4));
+        b.readFEN("8/8/8/8/4N3/8/8/8 w - - 0 1");
+        //Pawn p = (Pawn) b.getBoard()[28];
+        System.out.println(b.getBoard()[28].totalMove(b.getBoard(), 28));
         System.out.println(b.getBoard().getClass().getSimpleName());
         // System.out.println(p.totalMove(b.getBoard(), 12));
 
