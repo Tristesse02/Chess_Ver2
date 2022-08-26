@@ -15,6 +15,7 @@ public class Knight extends Piece{
     List<Integer> move = new ArrayList<>();
 
     //TODO: implementing move possibility for Knight
+<<<<<<< HEAD
 
     /*
      * idx passed into in range [0, 63]
@@ -40,6 +41,18 @@ public class Knight extends Piece{
             move.add(idx + 6);
         }
         return;
+=======
+    public static int getRow(int index){
+        if(index==0 || index==1 || index==2 || index==3 || index==4 || index==5 || index==6 || index==7) return 1;
+        if(index==8 || index==9|| index==10 || index==11 || index==12 || index==13 || index==14 || index==15){return 2;}
+        if(index==16 || index==17|| index==18 || index==19 || index==20 || index==21 || index==22 || index==23){return 3;}
+        if(index==24 || index==25 || index==26 || index==27 || index==28 || index==29 || index==30 || index==31){return 4;}
+        if(index==32 || index==33 || index==34 || index==35 || index==36 || index==37 || index==38 || index==39){return 5;}
+        if(index==40 || index==41 || index==42 || index==43 || index==44 || index==45 || index==46 || index==47){return 6;}
+        if(index==48 || index==49 || index==50 || index==51 || index==52 || index==53 || index==54 || index==55){return 7;}
+        if(index==56 || index==57 || index==58 || index==59 || index==60 || index==61 || index==62 || index==63){return 8;}
+        return -2;
+>>>>>>> 7e1a05a4e10b1cb19f3b9f3a24cef2d5a4e2cad2
     }
 
     public void moveKnightLeftUp1(Piece[] b, int ind){

@@ -4,9 +4,9 @@ import abstraction.Piece;
 import java.util.List;
 import java.util.ArrayList;
 
-public class Rock extends Piece{
+public class Rook extends Piece{
 
-    public Rock(Character name, int val, int col) {
+    public Rook(Character name, int val, int col) {
         super(name, val, col);
         //TODO Auto-generated constructor stub
     }
