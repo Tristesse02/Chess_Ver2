@@ -49,7 +49,7 @@ public class Board {
         if(c == 'p' || c == 'P') return new Pawn(c, 1, col);
         else if(c == 'R' || c == 'r') return new Rock(c, 5, col);
         else if(c == 'B' || c == 'b') return new Bishop(c, 3, col);
-        // else if(c == 'N' || c == 'n') return new Knight(c, 3, col);
+        else if(c == 'N' || c == 'n') return new Knight(c, 3, col);
         // else if(c == 'Q' || c == 'q') return new Queen(c, 9, col);
         // else if(c == 'k' || c == 'K') return new King(c, 100, col);
         return null;
@@ -76,9 +76,9 @@ public class Board {
 
     public static void main(String[] args){
         Board b = new Board();
-        b.readFEN("8/8/8/8/4N3/8/8/8 w - - 0 1");
+        b.readFEN("8/8/8/8/2n1P3/8/3N4/8 w - - 0 1");
         //Pawn p = (Pawn) b.getBoard()[28];
-        System.out.println(b.getBoard()[28].totalMove(b.getBoard(), 28));
+        System.out.println(b.getBoard()[11].totalMove(b.getBoard(), 11));
         System.out.println(b.getBoard().getClass().getSimpleName());
         // System.out.println(p.totalMove(b.getBoard(), 12));
 
