@@ -3,16 +3,19 @@ package PieceObject;
 import abstraction.Piece;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Knight extends Piece{
+
+    int[] offset = {17, 15, 10, 6, -6, -10, -15, -17};
+    HashMap<Integer, List<Integer>> move = new HashMap<>();
 
     public Knight(Character name, int val, int col) {
         super(name, val, col);
         //TODO Auto-generated constructor stub
+        move.put(0, new ArrayList<Integer>());
+        move.put(1, new ArrayList<Integer>());
     }
-
-    int[] offset = {17, 15, 10, 6, -6, -10, -15, -17};
-    List<Integer> move = new ArrayList<>();
 
     //TODO: implementing move possibility for Knight
 
@@ -31,10 +34,10 @@ public class Knight extends Piece{
         int i = ind + 6;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)+1){
             if(b[i] == null){
-                move.add(i);
+                move.get(0).add(i);
             }
             else if(b[i].getCol() != b[ind].getCol()){
-                move.add(i);
+                move.get(1).add(i);
             }
         }
         return;
@@ -44,10 +47,10 @@ public class Knight extends Piece{
         int i = ind + 15;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)+2){
             if(b[i] == null){
-                move.add(i);
+                move.get(0).add(i);
             }
             else if(b[i].getCol() != b[ind].getCol()){
-                move.add(i);
+                move.get(1).add(i);
             }
         }
         return;
@@ -57,10 +60,10 @@ public class Knight extends Piece{
         int i = ind + 10;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)+1){
             if(b[i] == null){
-                move.add(i);
+                move.get(0).add(i);
             }
             else if(b[i].getCol() != b[ind].getCol()){
-                move.add(i);
+                move.get(1).add(i);
             }
         }
         return;
@@ -70,10 +73,10 @@ public class Knight extends Piece{
         int i = ind + 17;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)+2){
             if(b[i] == null){
-                move.add(i);
+                move.get(0).add(i);
             }
             else if(b[i].getCol() != b[ind].getCol()){
-                move.add(i);
+                move.get(1).add(i);
             }
         }
         return;
@@ -83,10 +86,10 @@ public class Knight extends Piece{
         int i = ind - 10;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)-1){
             if(b[i] == null){
-                move.add(i);
+                move.get(0).add(i);
             }
             else if(b[i].getCol() != b[ind].getCol()){
-                move.add(i);
+                move.get(1).add(i);
             }
         }
         return;
@@ -96,10 +99,10 @@ public class Knight extends Piece{
         int i = ind - 17;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)-2){
             if(b[i] == null){
-                move.add(i);
+                move.get(0).add(i);
             }
             else if(b[i].getCol() != b[ind].getCol()){
-                move.add(i);
+                move.get(1).add(i);
             }
         }
         return;
@@ -109,10 +112,10 @@ public class Knight extends Piece{
         int i = ind - 6;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)-1){
             if(b[i] == null){
-                move.add(i);
+                move.get(0).add(i);
             }
             else if(b[i].getCol() != b[ind].getCol()){
-                move.add(i);
+                move.get(1).add(i);
             }
         }
         return;
@@ -122,17 +125,17 @@ public class Knight extends Piece{
         int i = ind - 15;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)-2){
             if(b[i] == null){
-                move.add(i);
+                move.get(0).add(i);
             }
             else if(b[i].getCol() != b[ind].getCol()){
-                move.add(i);
+                move.get(1).add(i);
             }
         }
         return;
     }
 
     @Override
-    public List<Integer> totalMove(Piece[] b, int ind){
+    public HashMap<Integer, List<Integer>> totalMove(Piece[] b, int ind){
         //TODO
         moveKnightLeftDown1(b, ind);
         moveKnightLeftDown2(b, ind);

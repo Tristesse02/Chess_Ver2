@@ -3,25 +3,28 @@ package PieceObject;
 import abstraction.Piece;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Queen extends Piece{
 
     public Queen(Character name, int val, int col) {
         super(name, val, col);
         //TODO Auto-generated constructor stub
+        move.put(0, new ArrayList<Integer>());
+        move.put(1, new ArrayList<Integer>());
     }
     
     int[] offset;
-    List<Integer> move = new ArrayList<>();
+    HashMap<Integer, List<Integer>> move = new HashMap<>();
 
     public void moveUpQueen(Piece[] b, int ind){
         for(int i = ind + 8; i < 64; i += 8){
             if(b[i] == null){
-                move.add(i);
+                move.get(0).add(i);
             }
             else{
                 if(b[i].getCol() != b[ind].getCol()){
-                    move.add(i);
+                    move.get(1).add(i);
                 }
                 break;
             }
@@ -32,11 +35,11 @@ public class Queen extends Piece{
     public void moveDownQueen(Piece[] b, int ind){
         for(int i = ind - 8; i >= 0; i -= 8){
             if(b[i] == null){
-                move.add(i);
+                move.get(0).add(i);
             }
             else{
                 if(b[i].getCol() != b[ind].getCol()){
-                    move.add(i);
+                    move.get(1).add(i);
                 }
                 break;
             }
@@ -52,11 +55,11 @@ public class Queen extends Piece{
                     isEdge = true;
                 }
                 if(b[i] == null){
-                    move.add(i);
+                    move.get(0).add(i);
                 }
                 else{
                     if(b[i].getCol() != b[ind].getCol()){
-                        move.add(i);
+                        move.get(1).add(i);
                     }
                     break;
                 }
@@ -73,11 +76,11 @@ public class Queen extends Piece{
                     isEdge = true;
                 }
                 if(b[i] == null){
-                    move.add(i);
+                    move.get(0).add(i);
                 }
                 else{
                     if(b[i].getCol() != b[ind].getCol()){
-                        move.add(i);
+                        move.get(1).add(i);
                     }
                     break;
                 }
@@ -94,10 +97,10 @@ public class Queen extends Piece{
                     isEdge = true;
                 }
                 if(b[i] == null){
-                    move.add(i);
+                    move.get(0).add(i);
                 }
                 else if(b[i].getCol() != b[ind].getCol()){
-                    move.add(i);
+                    move.get(1).add(i);
                     break;
                 }
             }
@@ -113,10 +116,10 @@ public class Queen extends Piece{
                     isEdge = true;
                 }
                 if(b[i] == null){
-                    move.add(i);
+                    move.get(0).add(i);
                 }
                 else if(b[i].getCol() != b[ind].getCol()){
-                    move.add(i);
+                    move.get(1).add(i);
                     break;
                 }
             }
@@ -132,10 +135,10 @@ public class Queen extends Piece{
                     isEdge = true;
                 }
                 if(b[i] == null){
-                    move.add(i);
+                    move.get(0).add(i);
                 }
                 else if(b[i].getCol() != b[ind].getCol()){
-                    move.add(i);
+                    move.get(1).add(i);
                     break;
                 }
             }
@@ -151,10 +154,10 @@ public class Queen extends Piece{
                     isEdge = true;
                 }
                 if(b[i] == null){
-                    move.add(i);
+                    move.get(0).add(i);
                 }
                 else if(b[i].getCol() != b[ind].getCol()){
-                    move.add(i);
+                    move.get(1).add(i);
                     break;
                 }
             }
@@ -164,7 +167,7 @@ public class Queen extends Piece{
 
     //TODO: implement the move possibility of the queen
     @Override
-    public List<Integer> totalMove(Piece[]b, int ind){
+    public HashMap<Integer, List<Integer>> totalMove(Piece[]b, int ind){
         moveUpQueen(b, ind);
         moveDownQueen(b, ind);
         moveLeftQueen(b, ind);

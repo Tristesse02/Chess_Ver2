@@ -1,6 +1,7 @@
 package abstraction;
 
 import java.util.List;
+import java.util.HashMap;
 
 public abstract class Piece {
     protected Character name;
@@ -25,5 +26,7 @@ public abstract class Piece {
         return col;
     }
 
-    public abstract List<Integer> totalMove(Piece[] b, int ind);
+    // 0: move without captures
+    // 1: move with captures
+    public abstract HashMap<Integer, List<Integer>> totalMove(Piece[] b, int ind);
 }

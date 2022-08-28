@@ -3,16 +3,19 @@ package PieceObject;
 import abstraction.Piece;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class King extends Piece {
 
     public King(Character name, int val, int col) {
         super(name, val, col);
         //TODO Auto-generated constructor stub
+        move.put(0, new ArrayList<Integer>());
+        move.put(1, new ArrayList<Integer>());
     }
     
     static int[] offset = {-9, -8, -7, -1, 1, 7, 8, 9};
-    List<Integer> move = new ArrayList<Integer>();
+    HashMap<Integer, List<Integer>> move = new HashMap<>();
     boolean isWhite = (col == 16);
     //TODO: implementing move possibility for King
 
@@ -34,7 +37,10 @@ public class King extends Piece {
                 else{
                     Piece tmp = b[idx + offset[i]];
                     b[idx + offset[i]] = b[idx];
-                    if(!inCheck(b, idx + offset[i])) move.add(idx + offset[i]);
+                    if(!inCheck(b, idx + offset[i])){
+                        if(tmp == null) move.get(0).add(idx + offset[i]);
+                        else move.get(1).add(idx + offset[i]);
+                    } 
                     b[idx + offset[i]] = tmp;
                 }
             }
@@ -196,7 +202,7 @@ public class King extends Piece {
 
     
     @Override
-    public List<Integer> totalMove(Piece[] b, int idx){
+    public HashMap<Integer, List<Integer>> totalMove(Piece[] b, int idx){
         isPieceAtOffsets(b, idx);
         return move;
     }

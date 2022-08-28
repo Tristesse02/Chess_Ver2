@@ -3,17 +3,20 @@ package PieceObject;
 import abstraction.Piece;
 import java.util.List;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Bishop extends Piece{
 
     public Bishop(Character name, int val, int col) {
         super(name, val, col);
+        move.put(0, new ArrayList<Integer>());
+        move.put(1, new ArrayList<Integer>());
         //TODO Auto-generated constructor stub
     }
     
     //TODO: implementing move possibility for bishop
     int[] offset = {-9, -7, 7, 9};
-    List<Integer> move = new ArrayList<>();
+    HashMap<Integer, List<Integer>> move = new HashMap<>();
     
     /*
      * TODO1: writing method for the bishop to go in up - left diagonal
@@ -29,10 +32,10 @@ public class Bishop extends Piece{
                     isEdge = true;
                 }
                 if(b[i] == null){
-                    move.add(i);
+                    move.get(0).add(i);
                 }
                 else if(b[i].getCol() != b[ind].getCol()){
-                    move.add(i);
+                    move.get(1).add(i);
                     break;
                 }
             }
@@ -50,10 +53,10 @@ public class Bishop extends Piece{
                     isEdge = true;
                 }
                 if(b[i] == null){
-                    move.add(i);
+                    move.get(0).add(i);
                 }
                 else if(b[i].getCol() != b[ind].getCol()){
-                    move.add(i);
+                    move.get(1).add(i);
                     break;
                 }
             }
@@ -70,10 +73,10 @@ public class Bishop extends Piece{
                     isEdge = true;
                 }
                 if(b[i] == null){
-                    move.add(i);
+                    move.get(0).add(i);
                 }
                 else if(b[i].getCol() != b[ind].getCol()){
-                    move.add(i);
+                    move.get(1).add(i);
                     break;
                 }
             }
@@ -90,10 +93,10 @@ public class Bishop extends Piece{
                     isEdge = true;
                 }
                 if(b[i] == null){
-                    move.add(i);
+                    move.get(0).add(i);
                 }
                 else if(b[i].getCol() != b[ind].getCol()){
-                    move.add(i);
+                    move.get(1).add(i);
                     break;
                 }
             }
@@ -102,7 +105,7 @@ public class Bishop extends Piece{
     }   
 
     @Override
-    public List<Integer> totalMove(Piece[] b, int ind){
+    public HashMap<Integer, List<Integer>> totalMove(Piece[] b, int ind){
         //TODO
         moveUpLeft(b, ind);
         moveUpRight(b, ind);
