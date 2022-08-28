@@ -24,7 +24,7 @@ public class Bishop extends Piece{
      * @Param Piece[], int
      * @return void
      */
-    public void moveUpLeft(Piece[] b, int ind){
+    private void moveUpLeft(Piece[] b, int ind){
         boolean isEdge = false;
         for(int i = ind + 7; i < 64; i += 7){
             if(!isEdge){
@@ -45,7 +45,7 @@ public class Bishop extends Piece{
     /*
      * TODO2: like todo1 but in other direction
      */
-    public void moveUpRight(Piece[] b, int ind){
+    private void moveUpRight(Piece[] b, int ind){
         boolean isEdge = false;
         for(int i = ind + 9; i < 64; i += 9){
             if(!isEdge){
@@ -65,7 +65,7 @@ public class Bishop extends Piece{
     }
 
     //TODO:
-    public void moveDownLeft(Piece[] b, int ind){
+    private void moveDownLeft(Piece[] b, int ind){
         boolean isEdge = false;
         for(int i = ind - 9; i >= 0; i -= 9){
             if(!isEdge){
@@ -85,7 +85,7 @@ public class Bishop extends Piece{
     }
 
     //TODO:
-    public void moveDownRight(Piece[] b, int ind){
+    private void moveDownRight(Piece[] b, int ind){
         boolean isEdge = false;
         for(int i = ind - 7; i >= 0; i -= 7){
             if(!isEdge){

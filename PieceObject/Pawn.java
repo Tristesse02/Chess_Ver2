@@ -17,7 +17,7 @@ public class Pawn extends Piece{
     int[] offset = {7, 8, 9, 16};
     HashMap<Integer, List<Integer>> move = new HashMap<>();
 
-    public void possibleMoveWC(Piece[] b, int ind){
+    private void possibleMoveWC(Piece[] b, int ind){
         int bound = isWhite ? 0 : 63;
         int sign = isWhite ? 1 : -1;
 
@@ -32,7 +32,7 @@ public class Pawn extends Piece{
         
     }
 
-    public void possibleCapture(Piece[] b, int ind){
+    private void possibleCapture(Piece[] b, int ind){
         int sign = (isWhite) ? 1 : -1;
 
         int[] pos = {ind + offset[0] * sign, ind + offset[2] * sign};

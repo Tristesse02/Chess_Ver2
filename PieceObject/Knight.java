@@ -22,7 +22,7 @@ public class Knight extends Piece{
     /*
      * idx passed into in range [0, 63]
      */
-    public static int getRow(int idx){
+    private static int getRow(int idx){
         if(idx >= 0 && idx <= 63) return idx / 8 + 1;
         return -2;
 
@@ -30,7 +30,7 @@ public class Knight extends Piece{
         // return (idx >= 0 && idx <= 63) ? (idx / 8 + 1) : -2;
     }
 
-    public void moveKnightLeftUp1(Piece[] b, int ind){
+    private void moveKnightLeftUp1(Piece[] b, int ind){
         int i = ind + 6;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)+1){
             if(b[i] == null){
@@ -43,7 +43,7 @@ public class Knight extends Piece{
         return;
     }
 
-    public void moveKnightLeftUp2(Piece[] b, int ind){
+    private void moveKnightLeftUp2(Piece[] b, int ind){
         int i = ind + 15;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)+2){
             if(b[i] == null){
@@ -56,7 +56,7 @@ public class Knight extends Piece{
         return;
     }
 
-    public void moveKnightRightUp1(Piece[] b, int ind){
+    private void moveKnightRightUp1(Piece[] b, int ind){
         int i = ind + 10;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)+1){
             if(b[i] == null){
@@ -69,7 +69,7 @@ public class Knight extends Piece{
         return;
     }
 
-    public void moveKnightRightUp2(Piece[] b, int ind){
+    private void moveKnightRightUp2(Piece[] b, int ind){
         int i = ind + 17;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)+2){
             if(b[i] == null){
@@ -82,7 +82,7 @@ public class Knight extends Piece{
         return;
     }
 
-    public void moveKnightLeftDown1(Piece[] b, int ind){
+    private void moveKnightLeftDown1(Piece[] b, int ind){
         int i = ind - 10;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)-1){
             if(b[i] == null){
@@ -95,7 +95,7 @@ public class Knight extends Piece{
         return;
     }
 
-    public void moveKnightLeftDown2(Piece[] b, int ind){
+    private void moveKnightLeftDown2(Piece[] b, int ind){
         int i = ind - 17;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)-2){
             if(b[i] == null){
@@ -108,7 +108,7 @@ public class Knight extends Piece{
         return;
     }
 
-    public void moveKnightRightDown1(Piece[] b, int ind){
+    private void moveKnightRightDown1(Piece[] b, int ind){
         int i = ind - 6;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)-1){
             if(b[i] == null){
@@ -121,7 +121,7 @@ public class Knight extends Piece{
         return;
     }
 
-    public void moveKnightRightDown2(Piece[] b, int ind){
+    private void moveKnightRightDown2(Piece[] b, int ind){
         int i = ind - 15;
         if(i>=0 && i<64 && getRow(i) == getRow(ind)-2){
             if(b[i] == null){

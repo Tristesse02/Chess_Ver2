@@ -17,7 +17,7 @@ public class Rook extends Piece{
         move.put(1, new ArrayList<Integer>());
     }
     
-    public void moveUp(Piece[] b, int ind){
+    private void moveUp(Piece[] b, int ind){
         for(int i = ind + 8; i < 64; i += 8){
             if(b[i] != null){
                 if(b[i].getCol() != b[ind].getCol()){
@@ -30,7 +30,7 @@ public class Rook extends Piece{
         }
     }
 
-    public void moveDown(Piece[] b, int ind){
+    private void moveDown(Piece[] b, int ind){
         for(int i = ind - 8; i >= 0; i -= 8){
             if(b[i] != null){
                 if(b[i].getCol() != b[ind].getCol()){
@@ -43,7 +43,7 @@ public class Rook extends Piece{
         }
     }
 
-    public void moveLeft(Piece[] b, int ind){
+    private void moveLeft(Piece[] b, int ind){
         int lowerBound = (ind / 8) * 8;
         for(int i = ind - 1; i >= lowerBound; i--){
             if(b[i] != null){
@@ -57,7 +57,7 @@ public class Rook extends Piece{
         }
     }
 
-    public void moveRight(Piece[] b, int ind){
+    private void moveRight(Piece[] b, int ind){
         int upperBound = (ind / 8) * 8 + 8;
         for(int i = ind + 1; i < upperBound; i++){
             if(b[i] != null){

@@ -19,7 +19,7 @@ public class King extends Piece {
     boolean isWhite = (col == 16);
     //TODO: implementing move possibility for King
 
-    public int getRow(int idx){
+    private int getRow(int idx){
         return (idx >= 0 && idx <= 63) ? (idx / 8 + 1) : -2;
     }
     
@@ -30,7 +30,7 @@ public class King extends Piece {
      * @Param: board, index
      * @return: list of possible capture of the pieces surrounding the king
      */
-    public void isPieceAtOffsets(Piece[] b, int idx){
+    private void isPieceAtOffsets(Piece[] b, int idx){
         for(int i = 0; i < offset.length; i++){
             if((idx + offset[i]) <= 63 && (idx + offset[i]) >= 0){
                 if(b[idx + offset[i]] != null && b[idx + offset[i]].getCol() == b[idx].getCol()) continue;
@@ -49,7 +49,7 @@ public class King extends Piece {
 
     //supporting method for isPieceAtOffsets()
     //08/26/2022
-    public boolean inCheck(Piece[] b, int idx){
+    private boolean inCheck(Piece[] b, int idx){
         int sign = isWhite ? 1 : -1;
         int bound = isWhite ? 63 : 0;
         //for pawns:
@@ -91,7 +91,7 @@ public class King extends Piece {
     }
 
     //Supporting method for inCheck:
-    public boolean upLeft(Piece[] b, int idx){
+    private boolean upLeft(Piece[] b, int idx){
         boolean isEdge = false;
         for(int i = idx + 7; i < 64; i += 7){
             if(!isEdge){
@@ -105,7 +105,7 @@ public class King extends Piece {
         return false;
     }
 
-    public boolean upRight(Piece[] b, int idx){
+    private boolean upRight(Piece[] b, int idx){
         boolean isEdge = false;
         for(int i = idx + 9; i < 64; i += 9){
             if(!isEdge){
@@ -117,7 +117,7 @@ public class King extends Piece {
         return false;
     }
 
-    public boolean downLeft(Piece[] b, int idx){
+    private boolean downLeft(Piece[] b, int idx){
         boolean isEdge = false;
         for(int i = idx - 9; i >= 0; i -= 9){
             if(!isEdge){
@@ -128,7 +128,7 @@ public class King extends Piece {
         }
         return false;
     }
-    public boolean downRight(Piece[] b, int idx){
+    private boolean downRight(Piece[] b, int idx){
         boolean isEdge = false;
         for(int i = idx - 7; i >= 0; i -= 7){
             if(!isEdge){
@@ -141,7 +141,7 @@ public class King extends Piece {
     }
 
     //supporting method for inCheck:
-    public boolean left(Piece[] b, int idx, int bound){
+    private boolean left(Piece[] b, int idx, int bound){
         for(int i = idx - 1; i >= bound; i--){
             if(b[i] == null) continue;
             if(b[i].getCol() == b[idx].getCol()) return false;
@@ -151,7 +151,7 @@ public class King extends Piece {
         return false;
     }
 
-    public boolean right(Piece[] b, int idx, int bound){
+    private boolean right(Piece[] b, int idx, int bound){
         for(int i = idx + 1; i <= bound; i++){
             if(b[i] == null) continue;
             if(b[i].getCol() == b[idx].getCol()) return false;
@@ -164,7 +164,7 @@ public class King extends Piece {
         return false;
     }
 
-    public boolean up(Piece[] b, int idx, int bound){
+    private boolean up(Piece[] b, int idx, int bound){
         for(int i = idx + 8; i <= bound; i+=8){
             if(b[i] == null) continue;
             if(b[i].getCol() == b[idx].getCol()) return false;
@@ -176,7 +176,7 @@ public class King extends Piece {
         return false;
     }
 
-    public boolean down(Piece[] b, int idx, int bound){
+    private boolean down(Piece[] b, int idx, int bound){
         for(int i = idx - 8; i >= bound; i-=8){
             if(b[i] == null) continue;
             if(b[i].getCol() == b[idx].getCol()) return false;
@@ -190,7 +190,7 @@ public class King extends Piece {
     }
 
     //supporting method for inCheck:
-    public boolean knightMove(Piece[] b, int idx){
+    private boolean knightMove(Piece[] b, int idx){
         int[] knight_offset = {17, 15, 10, 6, -6, -10, -15, -17};
 
         for(int i = 0; i < knight_offset.length; i++){

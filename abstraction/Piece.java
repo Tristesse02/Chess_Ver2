@@ -26,6 +26,10 @@ public abstract class Piece {
         return col;
     }
 
+    public int getVal(){
+        return val;
+    }
+
     // 0: move without captures
     // 1: move with captures
     public abstract HashMap<Integer, List<Integer>> totalMove(Piece[] b, int ind);

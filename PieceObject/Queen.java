@@ -17,7 +17,7 @@ public class Queen extends Piece{
     int[] offset;
     HashMap<Integer, List<Integer>> move = new HashMap<>();
 
-    public void moveUpQueen(Piece[] b, int ind){
+    private void moveUpQueen(Piece[] b, int ind){
         for(int i = ind + 8; i < 64; i += 8){
             if(b[i] == null){
                 move.get(0).add(i);
@@ -32,7 +32,7 @@ public class Queen extends Piece{
         return;
     }
 
-    public void moveDownQueen(Piece[] b, int ind){
+    private void moveDownQueen(Piece[] b, int ind){
         for(int i = ind - 8; i >= 0; i -= 8){
             if(b[i] == null){
                 move.get(0).add(i);
@@ -47,7 +47,7 @@ public class Queen extends Piece{
         return;
     }
 
-    public void moveRightQueen(Piece[] b, int ind){
+    private void moveRightQueen(Piece[] b, int ind){
         boolean isEdge = false;
         for(int i = ind + 1; i < 64; i++){
             if(!isEdge){
@@ -68,7 +68,7 @@ public class Queen extends Piece{
         return;
     }
 
-    public void moveLeftQueen(Piece[] b, int ind){
+    private void moveLeftQueen(Piece[] b, int ind){
         boolean isEdge = false;
         for(int i = ind - 1; i >= 0; i--){
             if(!isEdge){
@@ -89,7 +89,7 @@ public class Queen extends Piece{
         return;
     }
 
-    public void moveUpLeft(Piece[] b, int ind){
+    private void moveUpLeft(Piece[] b, int ind){
         boolean isEdge = false;
         for(int i = ind + 7; i < 64; i += 7){
             if(!isEdge){
@@ -108,7 +108,7 @@ public class Queen extends Piece{
         return;
     }
 
-    public void moveUpRight(Piece[] b, int ind){
+    private void moveUpRight(Piece[] b, int ind){
         boolean isEdge = false;
         for(int i = ind + 9; i < 64; i += 9){
             if(!isEdge){
@@ -127,7 +127,7 @@ public class Queen extends Piece{
         return;
     }
 
-    public void moveDownLeft(Piece[] b, int ind){
+    private void moveDownLeft(Piece[] b, int ind){
         boolean isEdge = false;
         for(int i = ind - 9; i >= 0; i -= 9){
             if(!isEdge){
@@ -146,7 +146,7 @@ public class Queen extends Piece{
         return;
     }
 
-    public void moveDownRight(Piece[] b, int ind){
+    private void moveDownRight(Piece[] b, int ind){
         boolean isEdge = false;
         for(int i = ind - 7; i >= 0; i -= 7){
             if(!isEdge){

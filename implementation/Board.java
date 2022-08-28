@@ -46,12 +46,12 @@ public class Board {
 
     public Piece creatingNewPiece(Character c){
         int col = Character.isLowerCase(c) ? 8 : 16;
-        if(c == 'p' || c == 'P') return new Pawn(c, 1, col);
-        else if(c == 'R' || c == 'r') return new Rook(c, 5, col);
-        else if(c == 'B' || c == 'b') return new Bishop(c, 3, col);
-        else if(c == 'N' || c == 'n') return new Knight(c, 3, col);
-        else if(c == 'Q' || c == 'q') return new Queen(c, 9, col);
-        else if(c == 'k' || c == 'K') return new King(c, 100, col);
+        if(c == 'p' || c == 'P') return new Pawn(c, 10, col);
+        else if(c == 'R' || c == 'r') return new Rook(c, 50, col);
+        else if(c == 'B' || c == 'b') return new Bishop(c, 30, col);
+        else if(c == 'N' || c == 'n') return new Knight(c, 30, col);
+        else if(c == 'Q' || c == 'q') return new Queen(c, 90, col);
+        else if(c == 'k' || c == 'K') return new King(c, 0, col);
         return null;
     }
 
@@ -76,8 +76,8 @@ public class Board {
 
     public static void main(String[] args){
         Board b = new Board();
-        b.readFEN("8/8/4pP2/3pP3/2pP4/2P5/8/8 w - - 0 1");
-        int idx = 35;
+        b.readFEN("8/8/8/8/4r1n1/5P2/8/8 w - - 0 1");
+        int idx = 21;
         System.out.println(b.getBoard()[idx].totalMove(b.getBoard(), idx));
         System.out.println(b.getBoard().getClass().getSimpleName());
         // System.out.println(p.totalMove(b.getBoard(), 12));
