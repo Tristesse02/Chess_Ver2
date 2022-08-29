@@ -7,10 +7,12 @@ import java.util.HashMap;
 
 public class evaluation{
 
-    HashMap<Integer, List<Integer>> hmi; // converting place that it is currently standing -> list of its possible move
+    HashMap<Integer, List<Integer>> hmi1; // converting place that it is currently standing -> list of its possible move without capture
+    HashMap<Integer, List<Integer>> hmi2; // converting place that it is currently standing -> list of its possible capture
     HashMap<Character, List<Integer>> hmc;
     public evaluation(Piece[] b){
-        hmi = new HashMap<>();
+        hmi1 = new HashMap<>();
+        hmi2 = new HashMap<>();
         hmc = new HashMap<>();
         this.tracking_piece_and_its_totalMove(b);
     }
@@ -37,7 +39,8 @@ public class evaluation{
     private void tracking_piece_and_its_totalMove(Piece[] b){
         for(int i = 0; i < b.length; i++){
             if(b[i] != null){
-                hmi.put(i, b[i].totalMove(b, i).get(0));
+                hmi1.put(i, b[i].totalMove(b, i).get(0));
+                hmi2.put(i, b[i].totalMove(b, i).get(1));
                 if(!hmc.containsKey(b[i].getName())){
                     hmc.put(b[i].getName(), new ArrayList<Integer>());
                 }
@@ -115,14 +118,22 @@ public class evaluation{
     }
 
     //Characteristic 4: space to manuver
-    public int gotSpace(Piece[] b, HashMap<Integer, List<Integer>> hm){
+    public int gotSpace(Piece[] b, HashMap<Integer, List<Integer>> hmnc, HashMap<Integer, List<Integer>> hmc){
         int maxWhite = 0;
         int maxBlack = 0;
-        for(Integer i : hm.keySet()){
+        for(Integer i : hmnc.keySet()){
             if(Character.isLowerCase(b[i].getName())){
-                maxWhite += hm.get(i).size();
+                maxWhite += hmnc.get(i).size();
             } else {
-                maxBlack += hm.get(i).size();
+                maxBlack += hmnc.get(i).size();
+            }
+        }
+
+        for(Integer i : hmc.keySet()){
+            if(Character.isLowerCase(b[i].getName())){
+                maxWhite += hmc.get(i).size();
+            } else {
+                maxBlack += hmc.get(i).size();
             }
         }
         return maxWhite - maxBlack;
@@ -186,10 +197,15 @@ public class evaluation{
     }
 
     //Char 7: controlling the center:
-    public int 
+    public int centerControlling(HashMap<Integer, List<Integer>> hm){
+        //TODO: maybe creating just check how many pieces are in the center
+    }
+
     //char 8: looking for checks
     public int check(){
 
     }
+
+    //char 9: connected pawn
     
 }
