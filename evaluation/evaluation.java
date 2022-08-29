@@ -7,10 +7,11 @@ import java.util.HashMap;
 
 public class evaluation{
 
-    HashMap<Integer, List<Integer>> hm; // converting place that it is currently standing -> list of its possible move
-
+    HashMap<Integer, List<Integer>> hmi; // converting place that it is currently standing -> list of its possible move
+    HashMap<Character, List<Integer>> hmc;
     public evaluation(Piece[] b){
-        hm = new HashMap<>();
+        hmi = new HashMap<>();
+        hmc = new HashMap<>();
         this.tracking_piece_and_its_totalMove(b);
     }
 
@@ -29,14 +30,30 @@ public class evaluation{
     //TODO: finding pieces indices after 1 loop - using dictionary and list of move as value
     /*
      * @param: Piece[] b
-     * @return: dictionary: <Piece_name, List_of_idx_pieces_stays_at>
+     * @return: void
+     * @create: dictionary: hmc = <Piece_name, List_of_idx_pieces_stays_at>
+     *        : dictionary: hmi = <Piece_idx, List_of_move>
      */
-    public void tracking_piece_and_its_totalMove(Piece[] b){
+    private void tracking_piece_and_its_totalMove(Piece[] b){
         for(int i = 0; i < b.length; i++){
-            if(b[i] != null) hm.put(i, b[i].totalMove(b, i).get(0));
+            if(b[i] != null){
+                hmi.put(i, b[i].totalMove(b, i).get(0));
+                if(!hmc.containsKey(b[i].getName())){
+                    hmc.put(b[i].getName(), new ArrayList<Integer>());
+                }
+                hmc.get(b[i].getName()).add(i);
+            }
+            
         }
     }
 
+    private int getRow(int idx){
+        return idx / 8 + 1;
+    }
+
+    private int getColumn(int idx){
+        return idx % 8 + 1;
+    }
     //Characteristic 1: Pieces value
     /*
      * This method checking number of pieces remaining on the board
@@ -64,14 +81,78 @@ public class evaluation{
     }
 
     //Characteristic 2: passed pawn, connected pawn in open file
+    public int passedPawn(Piece[] b, HashMap<Character, ArrayList<Integer>> hm){
+        List<Integer> tmpWhite = new ArrayList<>();
+        List<Integer> tmpBlack = new ArrayList<>();
+        for(int i = 0; i < hm.get('P').size(); i++){
+            tmpWhite.add(hm.get('P').get(i) % 8);
+        }
+        
+        for(int i = 0; i < hm.get('p').size(); i++){
+            tmpBlack.add(hm.get('p').get(i) % 8);
+        }
+
+        for(int i = 0; i < tmpWhite.size(); i++){
+            if(tmpBlack.contains(tmpWhite.get(i))){
+                tmpWhite.remove(i);
+                tmpBlack.remove(Integer.valueOf(tmpWhite.get(i)));
+            }
+        }
+        return (tmpWhite.size() - tmpBlack.size()) * 10;
+    }
 
     //Characteristic 3: pawn close to promotion
-    public int pawnPromo(Piece[] b)
+    public int pawnPromo(HashMap<Character, ArrayList<Integer>> hm){
+        int maxWhite = 0;
+        int maxBlack = 0;
+        for(int i = 0; i < hm.get('P').size(); i++){
+            maxWhite += getRow(hm.get('P').get(i)) * 10;
+        } 
+        for(int i = 0; i < hm.get('p').size(); i++){
+            maxBlack += getRow(hm.get('p').get(i)) * 10;
+        }
+        return maxWhite - maxBlack;
+    }
 
     //Characteristic 4: space to manuver
-    public int gotSpace()
+    public int gotSpace(Piece[] b, HashMap<Integer, List<Integer>> hm){
+        int maxWhite = 0;
+        int maxBlack = 0;
+        for(Integer i : hm.keySet()){
+            if(Character.isLowerCase(b[i].getName())){
+                maxWhite += hm.get(i).size();
+            } else {
+                maxBlack += hm.get(i).size();
+            }
+        }
+        return maxWhite - maxBlack;
+    }
 
     //Char 5:king safety: check the place where king should be standing
+    public int KingSafety(HashMap<Character, List<Integer>> hm){
+        int maxWhite = 0;
+        int maxBlack = 0;
+        if(hm.get('P').contains(2)||
+           hm.get('P').contains(3)||
+           hm.get('P').contains(6)||
+           hm.get('P').contains(7)) maxWhite = 80;
+        
+        else if(hm.get('P').contains(4)) maxWhite = 50;
+        else if(getRow(hm.get('P').get(0)) == 2) maxWhite = -20;
+        else if(getRow(hm.get('P').get(0)) > 2) maxWhite = -80;
+        else maxWhite = 60;
+
+        if(hm.get('p').contains(57)||
+           hm.get('p').contains(58)||
+           hm.get('p').contains(62)||
+           hm.get('p').contains(63)) maxBlack = -80;
+        
+        else if(hm.get('p').contains(60)) maxBlack = -50;
+        else if(getRow(hm.get('p').get(0)) == 7) maxBlack = 20;
+        else if(getRow(hm.get('p').get(0)) < 7) maxBlack = 80;
+        else maxBlack = -60;
+        return maxWhite - maxBlack;
+    }
     
     //Char 6: piece with less point capture piece with more point
     /*loop through valueSet -> using b[value] to find the Pieces location -> got it total_capture_possibilities
@@ -104,6 +185,11 @@ public class evaluation{
         return res;
     }
 
-    //char 7: looking for checks
+    //Char 7: controlling the center:
+    public int 
+    //char 8: looking for checks
+    public int check(){
+
+    }
     
 }
